@@ -3,8 +3,7 @@ const app = require('./app');
 const mongoose = require('mongoose');
 
 let server;
-
-mongoose.connect("mongodb://127.0.0.1:27017/StudentManagementSystem").then(() => {
+mongoose.connect(config.mongoose.url).then(() => {
     console.log('Connected to MongoDB');
     server = app.listen(config.port, () => {
         console.log(`Listening to port ${config.port}`);
