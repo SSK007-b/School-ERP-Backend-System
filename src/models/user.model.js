@@ -31,6 +31,13 @@ const userSchema = new mongoose.Schema({
         },
         private: true, // used by the toJSON plugin
       },
+      studentId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Student',  // Reference to the student model (only for students)
+        required: function() {
+          return this.role === 'Student';
+        }
+      },
       role: {
         type: String,
         enum: roles,

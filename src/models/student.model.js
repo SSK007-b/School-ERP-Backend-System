@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const studentSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -8,7 +7,6 @@ const studentSchema = new mongoose.Schema({
     },
     rollNo:{
         type: String,
-        required: true,
     },
     class:{
         type: String,

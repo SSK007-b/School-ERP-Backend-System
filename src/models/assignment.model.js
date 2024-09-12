@@ -16,8 +16,8 @@ const assignmentSchema = new mongoose.Schema({
     },
     status:{
         type: String,
-        enum: ['pending', 'completed', 'overdue'],
-        default: 'pending'
+        enum: ['active', 'closed'],
+        default: 'active'
     },
 })
 

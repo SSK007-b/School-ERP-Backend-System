@@ -1,13 +1,37 @@
 const Student = require('../models/student.model');
+const User = require('../models/user.model');
 const httpStatus = require('http-status');
 
 const createStudent = async (studentData) => {
     try {
-        return await Student.create(studentData);
-    }
-    catch (error) {
-        throw error;
-    }
+        const { name, rollNo, class: className, section, email, password } = studentData;
+    
+        // Create the student record
+        const newStudent = new Student({
+          name,
+          rollNo,
+          class: className,
+          section
+        });
+    
+        const savedStudent = await newStudent.save();
+    
+        // Create a corresponding user for login with student role
+        const newUser = new User({
+            name,
+            email,
+            password,
+            role: 'student',
+            studentId: savedStudent._id
+        });
+    
+        const savedUser = await newUser.save();
+
+        return { savedStudent, savedUser };
+
+      } catch (err) {
+        throw err;
+      }
 };
 
 const queryStudents = async () => {

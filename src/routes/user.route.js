@@ -6,7 +6,7 @@ const router = express.Router()
 
 router
     .route('/')
-    .get(auth(['read']), userController.getUsers)
+    .get(auth(['create']), userController.getUsers)
     .post(userController.createUser)
 
 router
