@@ -1,17 +1,18 @@
 const express = require('express');
 const studentController = require('../controllers/student.controller');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
 router
     .route('/')
-    .get(studentController.getStudents)
-    .post(studentController.createStudent);
+    .get(auth(['create']),studentController.getStudents)
+    .post(auth(['create']),studentController.createStudent);
 
 router
     .route('/:studentId')
-    .get(studentController.getStudent)
-    .patch(studentController.updateStudent)
-    .delete(studentController.deleteStudent);
-
+    .get(auth(),studentController.getStudent)
+    .patch(auth(),studentController.updateStudent)
+    .delete(auth(['delete']),studentController.deleteStudent);
+    
 module.exports = router;

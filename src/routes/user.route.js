@@ -7,11 +7,11 @@ const router = express.Router()
 router
     .route('/')
     .get(auth(['create']), userController.getUsers)
-    .post(userController.createUser)
+    .post(auth(['create']), userController.createUser)
 
 router
     .route('/:userId')
-    .get(auth(['read']), userController.getUser)
+    .get(auth(), userController.getUser)
     .patch(auth(['update']), userController.updateUser)
     .delete(auth(['delete']), userController.deleteUser)
 

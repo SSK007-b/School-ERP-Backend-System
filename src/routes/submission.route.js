@@ -13,7 +13,7 @@ router
     .route('/:submissionId')
     .get(auth(), submissionController.getSubmission)
     .patch(auth(), submissionController.updateSubmission)
-    .put(submissionController.gradeSubmission)
+    .put(auth(['create']), submissionController.gradeSubmission)
     .delete(auth(), submissionController.deleteSubmission);
 
 module.exports = router;

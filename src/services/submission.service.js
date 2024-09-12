@@ -11,7 +11,6 @@ const createSubmission = async (assignmentId, studentId, submissionContent) => {
     const student = await User.findById(studentId);
     if (!student || student.role !== 'student') throw new Error('Student not found or invalid role');
 
-    // Create new submission
     const newSubmission = new Submission({
       assignmentId,
       studentId,
