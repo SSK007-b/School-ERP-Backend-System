@@ -19,18 +19,27 @@ const queryUsers = async (filter, options) => {
     }
 };
 
-const getUserById = async (userid) =>{
+const getUserById = async (userId) =>{
     try {
-        return await User.findById(userid);
+        return await User.findById(userId);
     }
     catch(error){
         throw error;
     }
 };
 
-const updateUserById = async (userid, updateBody) => {
+const getUserByEmail = async (email) => {
     try {
-        const user = await getUserById(userid);
+        return await User.findOne({email})
+    }
+    catch(error){
+        throw error;
+    }
+}
+
+const updateUserById = async (userId, updateBody) => {
+    try {
+        const user = await getUserById(userId);
         if (!user){
             throw new Error(httpStatus.NOT_FOUND);
         }
@@ -43,9 +52,9 @@ const updateUserById = async (userid, updateBody) => {
     }
 };
 
-const deleteUserById = async (userid) => {
+const deleteUserById = async (userId) => {
     try {
-        const user = await getUserById(userid);
+        const user = await getUserById(userId);
         if (!user){
             throw new Error(httpStatus.NOT_FOUND);
         }
@@ -61,6 +70,7 @@ module.exports = {
     createUser,
     queryUsers,
     getUserById,
+    getUserByEmail,
     updateUserById,
     deleteUserById,
 };

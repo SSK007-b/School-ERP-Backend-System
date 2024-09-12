@@ -8,7 +8,6 @@ const userSchema = new mongoose.Schema({
     },
     rollNo : {
         type: Number,
-        unique: true,
     },
     class : {  
         type: String,

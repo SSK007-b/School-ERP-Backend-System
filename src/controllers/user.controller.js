@@ -25,7 +25,7 @@ const getUsers = async(req, res) => {
 
 const getUser = async(req, res) => {
     try {
-        const user = await userServices.getUserById(req.params.userid);
+        const user = await userServices.getUserById(req.params.userId);
         res.status(httpStatus.OK).send(user);
     }
     catch(error){
@@ -35,7 +35,7 @@ const getUser = async(req, res) => {
 
 const updateUser = async(req, res) => {
     try{
-        const user = await userServices.updateUserById(req.params.userid, req.body);
+        const user = await userServices.updateUserById(req.params.userId, req.body);
         res.status(httpStatus.OK).send(user);
     }
     catch(error){
@@ -45,7 +45,7 @@ const updateUser = async(req, res) => {
 
 const deleteUser = async(req, res) => {
     try {
-        const user = await userServices.deleteUserById(req.params.userid);
+        const user = await userServices.deleteUserById(req.params.userId);
         res.status(httpStatus.OK).send(user);
     }
     catch(error){

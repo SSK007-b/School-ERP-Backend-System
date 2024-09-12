@@ -1,17 +1,16 @@
 const express = require('express')
 const userController = require('../controllers/user.controller')
+const auth = require('../middleware/auth')
 
 const router = express.Router()
 
-// console.log('userController', userController.getUsers)
-
 router
     .route('/')
-    .get(userController.getUsers)
-    .post(userController.createUser)
+    .get(auth(), userController.getUsers)
+    .post(auth(['teacher']), userController.createUser)
 
 router
-    .route('/:userid')
+    .route('/:userId')
     .get(userController.getUser)
     .patch(userController.updateUser)
     .delete(userController.deleteUser)
