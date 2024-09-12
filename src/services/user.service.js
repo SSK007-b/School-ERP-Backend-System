@@ -10,9 +10,9 @@ const createUser = async (userData) => {
     }
 };
 
-const queryUsers = async (filter, options) => {
+const queryUsers = async () => {
     try {
-        return await User.paginate(filter, options);
+        return await User.find();
     }
     catch (error) {
         throw error;
@@ -54,12 +54,8 @@ const updateUserById = async (userId, updateBody) => {
 
 const deleteUserById = async (userId) => {
     try {
-        const user = await getUserById(userId);
-        if (!user){
-            throw new Error(httpStatus.NOT_FOUND);
-        }
-        await user.remove();
-        return user;
+        await User.findByIdAndDelete(userId);
+        return {message: 'User deleted successfully'}
     }
     catch(error){
         throw error;

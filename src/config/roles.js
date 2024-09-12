@@ -1,5 +1,5 @@
 const allroles = {
-    user : ['read'],
+    student : ['read'],
     teacher : ['create', 'read', 'update', 'delete'],
     superAdmin : ['create', 'read', 'update', 'delete', 'assignRoles']
 }

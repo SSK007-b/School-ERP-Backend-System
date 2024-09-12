@@ -6,8 +6,8 @@ const router = express.Router()
 
 router
     .route('/')
-    .get(auth(), userController.getUsers)
-    .post(auth(['teacher']), userController.createUser)
+    .get(userController.getUsers)
+    .post(userController.createUser)
 
 router
     .route('/:userId')
