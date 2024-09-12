@@ -7,15 +7,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    rollNo : {
-        type: Number,
-    },
-    class : {  
-        type: String,
-    },
-    section : {
-        type: String,
-    },
     email: {
         type: String,
         required: true,
@@ -43,7 +34,7 @@ const userSchema = new mongoose.Schema({
       role: {
         type: String,
         enum: roles,
-        default: 'student',
+        default: 'teacher',
       },
 });
 

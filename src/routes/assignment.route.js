@@ -1,17 +1,18 @@
 const express = require('express');
 const { assignmentController } = require('../controllers');
+const auth = require('../middleware/auth');
 
 const router = express.Router();
 
 router
     .route('/')
-    .get(assignmentController.getAssignments)
-    .post(assignmentController.createAssignment);
+    .get(auth(), assignmentController.getAssignments)
+    .post(auth(['create']), assignmentController.createAssignment);
 
 router
     .route('/:assignmentId')
-    .get(assignmentController.getAssignment)
-    .patch(assignmentController.updateAssignment)
-    .delete(assignmentController.deleteAssignment);
+    .get(auth(), assignmentController.getAssignment)
+    .patch(auth(['create']), assignmentController.updateAssignment)
+    .delete(auth(['create']), assignmentController.deleteAssignment);
 
 module.exports = router;
