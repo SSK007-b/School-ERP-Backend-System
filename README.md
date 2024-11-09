@@ -1,5 +1,3 @@
-# CodeWite_Test
-
 # School ERP Backend System
 
 ## Overview
